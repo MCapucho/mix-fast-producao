@@ -4,7 +4,7 @@ import br.com.postech.mixfastproducao.core.entity.Pedido;
 
 import java.util.List;
 
-public interface ProducaoBuscarPorStatusPedido {
+public interface ProducaoBuscarPorStatusPedidoUseCase {
 
     List<Pedido> buscarPorStatusPedido();
 }

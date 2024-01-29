@@ -2,7 +2,7 @@ package br.com.postech.mixfastproducao.entrypoints.controller.v1.producao;
 
 import br.com.postech.mixfastproducao.core.entity.Pedido;
 import br.com.postech.mixfastproducao.core.usecase.interfaces.ProducaoAtualizarStatusPedidoUseCase;
-import br.com.postech.mixfastproducao.core.usecase.interfaces.ProducaoBuscarPorStatusPedido;
+import br.com.postech.mixfastproducao.core.usecase.interfaces.ProducaoBuscarPorStatusPedidoUseCase;
 import br.com.postech.mixfastproducao.entrypoints.http.PedidoHttp;
 import br.com.postech.mixfastproducao.entrypoints.http.mapper.PedidoHttpMapper;
 import lombok.RequiredArgsConstructor;
@@ -21,12 +21,12 @@ import java.util.List;
 public class ProducaoController {
 
     private final PedidoHttpMapper pedidoHttpMapper;
-    private final ProducaoBuscarPorStatusPedido producaoBuscarPorStatusPedido;
+    private final ProducaoBuscarPorStatusPedidoUseCase producaoBuscarPorStatusPedidoUseCase;
     private final ProducaoAtualizarStatusPedidoUseCase producaoAtualizarStatusPedidoUseCase;
 
     @GetMapping("/pedidos/status")
     public ResponseEntity<List<PedidoHttp>> buscarPorStatus() {
-        List<Pedido> listaPedidos = producaoBuscarPorStatusPedido.buscarPorStatusPedido();
+        List<Pedido> listaPedidos = producaoBuscarPorStatusPedidoUseCase.buscarPorStatusPedido();
         List<PedidoHttp> listaPedidosHttp = new ArrayList<>();
 
         listaPedidos.forEach(result -> {
