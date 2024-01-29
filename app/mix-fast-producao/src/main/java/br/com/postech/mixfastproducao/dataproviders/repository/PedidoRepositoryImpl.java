@@ -14,10 +14,8 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 @Repository
 public class PedidoRepositoryImpl implements PedidoRepository {
 
-    ProfileCredentialsProvider credentialsProvider = ProfileCredentialsProvider.create();
     Region region = Region.US_EAST_1;
     DynamoDbClient ddb = DynamoDbClient.builder()
-            .credentialsProvider(credentialsProvider)
             .region(region)
             .build();
 
