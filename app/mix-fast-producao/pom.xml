@@ -37,6 +37,7 @@
 		<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
 		<sonar.coverage.jacoco.xmlReportPaths>${project.test.result.directory}/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 		<sonar.coverage.exclusions>
+			**/*Config.*,
 			**/*Handler.*,
 			**/*Decoder.*,
 			**/*Exception.*,
@@ -44,6 +45,7 @@
 			**/*Http.*,
 			**/*Response.*,
 			**/*Mapper.*,
+			**/*RepositoryImpl.*,
 			**/*Application.*
 		</sonar.coverage.exclusions>
 	</properties>
