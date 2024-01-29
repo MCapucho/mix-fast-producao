@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: mix-fast-producao
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui-mix-fast.html
+
+logging:
+  level:
+    br.com.postech.mixfastproducao.dataproviders.gateway.api: DEBUG
+
+feign:
+  client:
+    config:
+      token:
+        url: ${URL_GATEWAY_TOKEN}/login
+        client: ${CLIENT_ID}
+      pedido:
+        url: ${URL_GATEWAY}/v1/pedidos
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    metrics:
+      enabled: false
+    prometheus:
+      enabled: true
+
+mix-fast:
+  openapi:
+    dev-url: http://localhost:${server.port}
+
+server:
+  port: 9082
