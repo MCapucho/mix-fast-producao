@@ -32,7 +32,7 @@ management:
     prometheus:
       enabled: true
 
-mix-fast:
+mix-fast-producao:
   openapi:
     dev-url: http://localhost:${server.port}
 

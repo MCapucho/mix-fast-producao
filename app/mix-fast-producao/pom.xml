@@ -20,7 +20,9 @@
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.0</spring-cloud.version>
 
+		<aws-java-sdk-bom.version>1.12.1</aws-java-sdk-bom.version>
 		<aws-java-sdk-dynamodb.version>1.12.646</aws-java-sdk-dynamodb.version>
+		<aws-sdk-java.version>2.16.1</aws-sdk-java.version>
 		<commons-lang3.version>3.12.0</commons-lang3.version>
 		<jacoco-plugin.version>0.8.8</jacoco-plugin.version>
 		<openapi-ui.version>2.1.0</openapi-ui.version>
@@ -45,6 +47,22 @@
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
 				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.amazonaws</groupId>
+				<artifactId>aws-java-sdk-bom</artifactId>
+				<version>${aws-java-sdk-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>software.amazon.awssdk</groupId>
+				<artifactId>bom</artifactId>
+				<version>${aws-sdk-java.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -89,6 +107,27 @@
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk-dynamodb</artifactId>
 			<version>${aws-java-sdk-dynamodb.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>dynamodb</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>dynamodb-enhanced</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>aws-sdk-java</artifactId>
+			<version>${aws-sdk-java.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>iam</artifactId>
 		</dependency>
 
 		<!-- Commons Lang-->
