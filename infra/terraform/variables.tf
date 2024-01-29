@@ -40,7 +40,7 @@ variable "target_group_arn" {
 }
 variable "port" {
   type = number
-  default = 9081
+  default = 9082
 }
 variable "ecs_cluster_name" {
   type = string
