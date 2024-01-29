@@ -25,6 +25,7 @@
 		<aws-sdk-java.version>2.16.1</aws-sdk-java.version>
 		<commons-lang3.version>3.12.0</commons-lang3.version>
 		<jacoco-plugin.version>0.8.8</jacoco-plugin.version>
+		<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<openapi-ui.version>2.1.0</openapi-ui.version>
 		<sonar-plugin.version>3.7.0.1746</sonar-plugin.version>
 		<snakeyaml.version>2.0</snakeyaml.version>
@@ -36,6 +37,7 @@
 		<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
 		<sonar.coverage.jacoco.xmlReportPaths>${project.test.result.directory}/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 		<sonar.coverage.exclusions>
+			**/*Config.*,
 			**/*Handler.*,
 			**/*Decoder.*,
 			**/*Exception.*,
@@ -43,6 +45,7 @@
 			**/*Http.*,
 			**/*Response.*,
 			**/*Mapper.*,
+			**/*RepositoryImpl.*,
 			**/*Application.*
 		</sonar.coverage.exclusions>
 	</properties>
@@ -150,6 +153,13 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!-- MapStruct -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
+
 		<!-- Métricas -->
 		<dependency>
 			<groupId>io.micrometer</groupId>
@@ -207,7 +217,17 @@
 							<artifactId>lombok</artifactId>
 							<version>${lombok.version}</version>
 						</path>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${mapstruct.version}</version>
+						</path>
 					</annotationProcessorPaths>
+					<compilerArgs>
+						<compilerArg>
+							-Amapstruct.defaultComponentModel=spring
+						</compilerArg>
+					</compilerArgs>
 				</configuration>
 			</plugin>
 
@@ -218,6 +238,7 @@
 				<configuration>
 					<excludes>
 						<exclude>**/**/MixFastProducaoApplication.*</exclude>
+						<exclude>br/com/postech/mixfastproducao/configurarion/**/*</exclude>
 						<exclude>br/com/postech/mixfastproducao/entrypoints/handler/**/*</exclude>
 						<exclude>br/com/postech/mixfastproducao/entrypoints/http/**/*</exclude>
 						<exclude>br/com/postech/mixfastproducao/core/entity/**/*</exclude>
@@ -226,6 +247,7 @@
 						<exclude>br/com/postech/mixfastproducao/core/usecases/interfaces/**/*</exclude>
 						<exclude>br/com/postech/mixfastproducao/dataproviders/exception/**/*</exclude>
 						<exclude>br/com/postech/mixfastproducao/dataproviders/model/**/*</exclude>
+						<exclude>br/com/postech/mixfastproducao/dataproviders/repository/**/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
