@@ -4,7 +4,6 @@ import br.com.postech.mixfastproducao.core.entity.Pedido;
 import br.com.postech.mixfastproducao.core.gateway.PedidoRepository;
 import br.com.postech.mixfastproducao.dataproviders.model.database.PedidoDB;
 import org.springframework.stereotype.Repository;
-import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
@@ -34,10 +33,6 @@ public class PedidoRepositoryImpl implements PedidoRepository {
         pedidoDB.setFila(pedido.getFila().toString());
         pedidoDB.setStatus_pedido(pedido.getStatus());
 
-        try {
-            TABELA_PEDIDO.putItem(pedidoDB);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        TABELA_PEDIDO.putItem(pedidoDB);
     }
 }
