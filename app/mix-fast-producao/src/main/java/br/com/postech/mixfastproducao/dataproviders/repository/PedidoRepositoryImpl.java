@@ -10,6 +10,10 @@ import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 @Repository
 public class PedidoRepositoryImpl implements PedidoRepository {
 
@@ -34,5 +38,22 @@ public class PedidoRepositoryImpl implements PedidoRepository {
         pedidoDB.setStatus_pedido(pedido.getStatus());
 
         TABELA_PEDIDO.putItem(pedidoDB);
+    }
+
+    @Override
+    public List<Pedido> buscarPorStatus() {
+        Iterator<PedidoDB> pedidos = TABELA_PEDIDO.scan().items().iterator();
+        List<Pedido> listaPedidos = new ArrayList<>();
+
+        while (pedidos.hasNext()) {
+            PedidoDB pedidoDB = pedidos.next();
+            Pedido pedido = new Pedido();
+            pedido.setCodigo(pedidoDB.getCodigo_pedido());
+            pedido.setFila(Integer.valueOf(pedidoDB.getFila()));
+            pedido.setStatus(pedidoDB.getStatus_pedido());
+            listaPedidos.add(pedido);
+        }
+
+        return listaPedidos;
     }
 }
