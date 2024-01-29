@@ -236,6 +236,7 @@
 				<configuration>
 					<excludes>
 						<exclude>**/**/MixFastProducaoApplication.*</exclude>
+						<exclude>br/com/postech/mixfastproducao/configurarion/**/*</exclude>
 						<exclude>br/com/postech/mixfastproducao/entrypoints/handler/**/*</exclude>
 						<exclude>br/com/postech/mixfastproducao/entrypoints/http/**/*</exclude>
 						<exclude>br/com/postech/mixfastproducao/core/entity/**/*</exclude>
@@ -244,6 +245,7 @@
 						<exclude>br/com/postech/mixfastproducao/core/usecases/interfaces/**/*</exclude>
 						<exclude>br/com/postech/mixfastproducao/dataproviders/exception/**/*</exclude>
 						<exclude>br/com/postech/mixfastproducao/dataproviders/model/**/*</exclude>
+						<exclude>br/com/postech/mixfastproducao/dataproviders/repository/**/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
