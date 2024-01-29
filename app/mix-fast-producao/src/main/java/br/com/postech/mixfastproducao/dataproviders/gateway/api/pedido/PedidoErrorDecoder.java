@@ -34,7 +34,7 @@ public class PedidoErrorDecoder implements ErrorDecoder {
                     new Date().getTime(),
                     response.request());
         } else if (HttpStatus.valueOf(response.status()).is4xxClientError()) {
-            return new ResourceApiException(message.getErrors().get(0) != null ?
+            return new ResourceApiException(message.getErrors() != null ?
                     message.getErrors().get(0) :
                     "Erro nos dados informados");
         } else {

@@ -1,7 +1,6 @@
 package br.com.postech.mixfastproducao.entrypoints.handler;
 
 import br.com.postech.mixfastproducao.dataproviders.exception.ResourceApiException;
-import br.com.postech.mixfastproducao.dataproviders.exception.ResourceFailedException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +20,6 @@ public class RestExceptionHandler {
     @ExceptionHandler(ResourceApiException.class)
     public ResponseEntity<ErrorResponse> handleClient(ResourceApiException ex) {
         return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(ResourceFailedException.class)
-    public ResponseEntity<ErrorResponse> handleFailed(ResourceFailedException ex) {
-        return handleGeneric(null, ex.getMessage(), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
