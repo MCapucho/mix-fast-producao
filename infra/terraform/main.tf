@@ -17,7 +17,7 @@ resource "aws_ecs_task_definition" "mixfastproducao_ecs_task_definition" {
   [
     {
       "name": "container_${var.name}",
-      "image": "022874923015.dkr.ecr.us-east-1.amazonaws.com/mixfastproducao:latest",
+      "image": "211125470560.dkr.ecr.us-east-1.amazonaws.com/mixfastproducao:latest",
       "essential": true,
       "portMappings": [
         {
@@ -40,11 +40,11 @@ resource "aws_ecs_task_definition" "mixfastproducao_ecs_task_definition" {
       "environment": [
         {
           "name": "URL_GATEWAY",
-          "value": "https://wifyye62fe.execute-api.us-east-1.amazonaws.com/mixfast"
+          "value": "https://wdz22x6xj4.execute-api.us-east-1.amazonaws.com/mixfast"
         },
         {
           "name": "URL_GATEWAY_TOKEN",
-          "value": "https://xzgdnfubcj.execute-api.us-east-1.amazonaws.com/mixfast-token"
+          "value": "https://hwn2wv5ioj.execute-api.us-east-1.amazonaws.com/mixfast-token"
         },
         {
           "name": "CLIENT_ID",
