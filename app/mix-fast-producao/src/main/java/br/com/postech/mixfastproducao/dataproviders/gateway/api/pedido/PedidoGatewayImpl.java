@@ -23,6 +23,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
                 .codigo(pedidoApiResponse.getCodigo())
                 .fila(pedidoApiResponse.getFila())
                 .status(pedidoApiResponse.getStatus())
+                .statusPagamento(pedidoApiResponse.getStatusPagamento())
                 .build();
     }
 

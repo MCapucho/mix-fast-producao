@@ -1,11 +1,14 @@
 package br.com.postech.mixfastproducao.core.usecase.impl;
 
 import br.com.postech.mixfastproducao.core.entity.Pedido;
+import br.com.postech.mixfastproducao.core.exception.PedidoConflictException;
 import br.com.postech.mixfastproducao.core.gateway.PedidoGateway;
 import br.com.postech.mixfastproducao.core.gateway.PedidoRepository;
 import br.com.postech.mixfastproducao.core.usecase.interfaces.ProducaoAtualizarStatusPedidoUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 
 @RequiredArgsConstructor
@@ -18,6 +21,13 @@ public class ProducaoAtualizarStatusPedidoUseCaseImpl implements ProducaoAtualiz
     @Override
     public void preparar(String codigo) {
         Pedido pedido = pedidoGateway.buscarPorCodigo(codigo);
+
+        if (Objects.equals(pedido.getStatusPagamento(), "REPROVADO")) {
+            throw new PedidoConflictException(String.format("O status do pagamento do pedido %s está reprovado.", codigo));
+        } else if (Objects.equals(pedido.getStatusPagamento(), "AGUARDANDO")) {
+            throw new PedidoConflictException(String.format("O pedido %s está aguardando o pagamento", codigo));
+        }
+
         pedidoGateway.atualizarStatus(codigo, "preparamento");
 
         pedido.setStatus("Preparando");

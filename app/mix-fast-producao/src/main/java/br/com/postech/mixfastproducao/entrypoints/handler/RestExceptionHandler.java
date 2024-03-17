@@ -1,5 +1,6 @@
 package br.com.postech.mixfastproducao.entrypoints.handler;
 
+import br.com.postech.mixfastproducao.core.exception.PedidoConflictException;
 import br.com.postech.mixfastproducao.dataproviders.exception.ResourceApiException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,11 @@ import java.util.List;
 public class RestExceptionHandler {
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
+    @ExceptionHandler(PedidoConflictException.class)
+    public ResponseEntity<ErrorResponse> handleConflict(PedidoConflictException ex) {
+            return handleGeneric(null, ex.getMessage(), HttpStatus.CONFLICT);
+    }
 
     @ExceptionHandler(ResourceApiException.class)
     public ResponseEntity<ErrorResponse> handleClient(ResourceApiException ex) {
