@@ -16,4 +16,6 @@ public class PedidoApiResponse {
     private Integer fila;
     @JsonProperty("status_pedido")
     private String status;
+    @JsonProperty("status_pagamento")
+    private String statusPagamento;
 }

@@ -14,4 +14,5 @@ public class Pedido {
     private String codigo;
     private Integer fila;
     private String status;
+    private String statusPagamento;
 }

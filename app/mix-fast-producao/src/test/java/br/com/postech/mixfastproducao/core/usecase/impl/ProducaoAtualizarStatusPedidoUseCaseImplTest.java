@@ -1,8 +1,10 @@
 package br.com.postech.mixfastproducao.core.usecase.impl;
 
 import br.com.postech.mixfastproducao.core.entity.Pedido;
+import br.com.postech.mixfastproducao.core.exception.PedidoConflictException;
 import br.com.postech.mixfastproducao.core.gateway.PedidoGateway;
 import br.com.postech.mixfastproducao.core.gateway.PedidoRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,6 +38,38 @@ class ProducaoAtualizarStatusPedidoUseCaseImplTest {
                 .codigo(UUID.randomUUID().toString())
                 .fila(1)
                 .build();
+    }
+
+    @Test
+    void deveAtualizarStatusPedidoComSucesso_Preparar_StatusPagamentoReprovado() {
+        pedido.setStatusPagamento("REPROVADO");
+
+        when(pedidoGateway.buscarPorCodigo(anyString()))
+                .thenReturn(pedido);
+
+        Exception exception = Assertions.assertThrows(PedidoConflictException.class, () ->
+                producaoAtualizarStatusPedidoUseCaseImpl.preparar(CODIGO));
+
+        String mensagemEsperada = String.format("O status do pagamento do pedido %s está reprovado.", CODIGO);
+        String mensagemAtual = exception.getMessage();
+
+        Assertions.assertTrue(mensagemAtual.contains(mensagemEsperada));
+    }
+
+    @Test
+    void deveAtualizarStatusPedidoComSucesso_Preparar_StatusPagamentoAguardando() {
+        pedido.setStatusPagamento("AGUARDANDO");
+
+        when(pedidoGateway.buscarPorCodigo(anyString()))
+                .thenReturn(pedido);
+
+        Exception exception = Assertions.assertThrows(PedidoConflictException.class, () ->
+                producaoAtualizarStatusPedidoUseCaseImpl.preparar(CODIGO));
+
+        String mensagemEsperada = String.format("O pedido %s está aguardando o pagamento", CODIGO);
+        String mensagemAtual = exception.getMessage();
+
+        Assertions.assertTrue(mensagemAtual.contains(mensagemEsperada));
     }
 
     @Test
