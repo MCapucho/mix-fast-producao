@@ -21,6 +21,11 @@ feign:
       pedido:
         url: ${URL_GATEWAY}/v1/pedidos
 
+aws:
+  queue:
+    name:
+      aprovado: mixfast-notificacao-pedido-pagamento-aprovado
+
 management:
   endpoints:
     web:
