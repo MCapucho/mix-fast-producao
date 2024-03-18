@@ -46,6 +46,8 @@
 			**/*Exception.*,
 			**/*DB.*,
 			**/*Http.*,
+			**/*Request.*,
+			**/*Aprovado.*,
 			**/*Response.*,
 			**/*Mapper.*,
 			**/*RepositoryImpl.*,
