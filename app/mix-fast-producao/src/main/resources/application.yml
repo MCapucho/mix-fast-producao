@@ -24,7 +24,7 @@ feign:
 aws:
   queue:
     name:
-      aprovado: mixfast-notificacao-pedido-pagamento-aprovado
+      cozinha: mixfast-notificacao-pedido-cozinha
 
 management:
   endpoints:
