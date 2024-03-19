@@ -17,7 +17,7 @@ public class ConsumerPedidoPagamentoAprovado {
     private final ProducaoAtualizarStatusPedidoUseCase producaoAtualizarStatusPedidoUseCase;
 
     @SneakyThrows
-    @JmsListener(destination = "${aws.queue.name.aprovado}")
+    @JmsListener(destination = "${aws.queue.name.cozinha}")
     public void consumerNotificacaoPedido(TextMessage textMessage) {
         PedidoRequest pedidoRequest = gson.fromJson(textMessage.getText(), PedidoRequest.class);
         producaoAtualizarStatusPedidoUseCase.preparar(pedidoRequest.getCodigoPedido());
